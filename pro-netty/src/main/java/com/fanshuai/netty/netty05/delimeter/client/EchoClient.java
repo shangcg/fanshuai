@@ -24,8 +24,9 @@ public class EchoClient {
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(group)
                     .channel(NioSocketChannel.class)
-                    .option(ChannelOption.SO_BACKLOG, 1024)
                     .handler(new Handler());
+
+            System.out.println("netty client started");
 
             ChannelFuture f = bootstrap.connect(ip, port).sync();
             f.channel().closeFuture().sync();
@@ -42,5 +43,9 @@ public class EchoClient {
                     .addLast(new StringDecoder())
                     .addLast(new EchoClientHandler());
         }
+    }
+
+    public static void main(String[] args) throws Exception{
+        new EchoClient().connect();
     }
 }
