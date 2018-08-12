@@ -12,6 +12,6 @@ public class Attachment {
     }
 
     public String toString() {
-        return String.format("Attachment[data=%s]", data);
+        return String.format("Attachment[data=%s]", data == null ? "null" : data);
     }
 }

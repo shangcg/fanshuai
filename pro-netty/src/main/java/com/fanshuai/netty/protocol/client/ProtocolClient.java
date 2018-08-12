@@ -32,11 +32,13 @@ public class ProtocolClient {
                             pipeline.addLast(new NettyMessageEncoder())
                                     .addLast(new NettyMessageDecoder(1024 * 1024, 4, 4))
                                     .addLast(new LoginAuthRespHandler())
-                                    .addLast(new HeartBeatRespHandler());
+                                    .addLast(new HeartBeatRespHandler())
+                                    .addLast(new ClientHandler());
                         }
                     });
 
             ChannelFuture f = bootstrap.connect(ip, port).sync();
+            System.out.println("netty client started");
             f.channel().closeFuture().sync();
         } catch (Exception e) {
             executorService.execute(new RetryConnectTask());

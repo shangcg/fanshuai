@@ -21,6 +21,6 @@ public class NettyMessage {
     }
 
     public String toString() {
-        return String.format("NettyMessage[header=%s, body=%s]", header.toString(), body.toString());
+        return String.format("NettyMessage[header=%s, body=%s]", header == null ? "null" : header, body == null ? "null" : body);
     }
 }

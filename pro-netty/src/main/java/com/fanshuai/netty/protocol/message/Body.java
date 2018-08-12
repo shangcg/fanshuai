@@ -13,6 +13,6 @@ public class Body {
     }
 
     public String toString() {
-        return String.format("Body[body=%s]", body);
+        return String.format("Body[body=%s]", body == null ? "null" : body);
     }
 }

@@ -27,11 +27,14 @@ public class ProtocolServer {
                             pipeline.addLast(new NettyMessageEncoder())
                                     .addLast(new NettyMessageDecoder(1024 * 1024, 4, 4))
                                     .addLast(new LoginAuthReqHandler())
-                                    .addLast(new HeartBeatReqHandler());
+                                    .addLast(new HeartBeatReqHandler())
+                                    .addLast(new ServerHandler());
                         }
                     });
 
             ChannelFuture f = bootstrap.bind(port).sync();
+            System.out.println("netty server started");
+
             f.channel().closeFuture().sync();
 
         } catch (Exception e) {

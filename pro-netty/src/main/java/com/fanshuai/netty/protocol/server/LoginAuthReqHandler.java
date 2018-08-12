@@ -8,9 +8,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -22,10 +19,11 @@ public class LoginAuthReqHandler extends ChannelInboundHandlerAdapter {
 
     public void channelRead(ChannelHandlerContext context, Object msg) {
         NettyMessage loginReq = (NettyMessage) msg;
-        System.out.println("login request from client: " + loginReq);
 
         if (loginReq.getHeader() != null
                 && loginReq.getHeader().getType() == MessageType.LOGIN_REQ.getValue()) {
+            System.out.println("login request from client: " + loginReq);
+
             String nodeIndex = context.channel().remoteAddress().toString();
 
             NettyMessage loginResp = null;
@@ -46,7 +44,6 @@ public class LoginAuthReqHandler extends ChannelInboundHandlerAdapter {
                 loginResp = buildLoginResp(ok ? "0" : "-1");
 
             }
-            System.out.println("login response is: " + loginResp);
             context.writeAndFlush(loginResp);
         } else {
             //其他类型的请求让后续handler处理

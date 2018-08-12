@@ -62,6 +62,6 @@ public class Header {
     }
 
     public String toString() {
-        return String.format("Header[crcCode=%s, length=%s, sessionId=%s, type=%s, priority=%s, attachment=%s]", crcCode, length, sessionId, type, priority, attachment.toString());
+        return String.format("Header[crcCode=%s, length=%s, sessionId=%s, type=%s, priority=%s, attachment=%s]", crcCode, length, sessionId, type, priority, attachment == null ? "null" : attachment.toString());
     }
 }

@@ -43,10 +43,11 @@ public class NettyMessageEncoder extends MessageToMessageEncoder<NettyMessage> {
 
         if (message.getBody() != null) {
             MessagePackCodec.getInstance().encode(message.getBody(), buf);
-        } else {
-            buf.writeInt(0);
         }
 
-        buf.setInt(4, buf.readableBytes());
+        //设置帧长度字段  netty帧长度从长度字段开始计算，因此减去crcCode  和 length2个字段8个字节
+        buf.setInt(4, buf.readableBytes() - 8);
+
+        list.add(buf);
     }
 }

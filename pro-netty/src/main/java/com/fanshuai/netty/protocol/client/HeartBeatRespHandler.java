@@ -63,7 +63,6 @@ public class HeartBeatRespHandler extends ChannelInboundHandlerAdapter {
 
         public void run() {
             NettyMessage heartBeat = buildHeartBeat();
-            System.out.println("client send heartBeat to server: " + heartBeat);
             context.writeAndFlush(heartBeat);
         }
     }

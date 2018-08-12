@@ -26,10 +26,10 @@ public class MessagePackCodec {
 
     private MessagePackCodec() {
         messagePack = new MessagePack();
-        messagePack.register(NettyMessage.class);
-        messagePack.register(Header.class);
         messagePack.register(Attachment.class);
         messagePack.register(Body.class);
+        messagePack.register(Header.class);
+        messagePack.register(NettyMessage.class);
     }
 
     public <T> void encode(T msg, ByteBuf byteBuf) throws Exception{
@@ -41,7 +41,7 @@ public class MessagePackCodec {
     public <T> T decode(ByteBuf byteBuf, Class<T> cls) throws Exception {
         int length = byteBuf.readInt();
         byte[] data = new byte[length];
-        byteBuf.readBytes(data, 0, length);
+        byteBuf.readBytes(data);
 
         return messagePack.read(data, cls);
     }

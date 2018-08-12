@@ -12,7 +12,6 @@ public class LoginAuthRespHandler extends ChannelInboundHandlerAdapter{
 
         //生成握手请求
         NettyMessage nettyMessage = buildLoginReq();
-        System.out.println("login server: " + nettyMessage);
         context.writeAndFlush(nettyMessage);
     }
 

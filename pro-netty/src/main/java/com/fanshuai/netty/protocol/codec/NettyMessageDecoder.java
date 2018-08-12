@@ -48,12 +48,11 @@ public class NettyMessageDecoder extends LengthFieldBasedFrameDecoder {
 
             header.setAttachment(map);
         }
+        nettyMessage.setHeader(header);
 
-        if (frame.readableBytes() == 0 || frame.readInt() == 0) {
+        if (frame.readableBytes() == 0) {
             nettyMessage.setBody(null);
         } else {
-            int bodySize = frame.readInt();
-            byte[] data = new byte[bodySize];
 
             Body body = MessagePackCodec.getInstance().decode(frame, Body.class);
             nettyMessage.setBody(body);
