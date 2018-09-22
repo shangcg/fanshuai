@@ -2,7 +2,6 @@ package com.fanshuai.helloworld;
 
 import akka.actor.ActorRef;
 import akka.actor.Props;
-import akka.actor.TypedActor;
 import akka.actor.UntypedActor;
 
 public class HelloWorld extends UntypedActor {

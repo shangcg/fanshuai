@@ -16,7 +16,6 @@
     <module>pro-netty</module>
       <module>pro-akka</module>
       <module>pro-security</module>
-      <module>pro-springboot</module>
   </modules>
   <packaging>pom</packaging>
 
